@@ -1,0 +1,3 @@
+[
+    { "keys": ["alt+space"], "command": "goto_next" }
+]

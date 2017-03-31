@@ -1,0 +1,21 @@
+[
+{
+    "id" : "VulHint",
+    "caption": "VulHint",
+    "children":
+    [
+    {
+        "caption" : "enable",
+        "command" : "enable"
+    },
+    {
+        "caption" : "disable",
+        "command" : "disable"
+    },
+    {
+        "caption" : "clear",
+        "command" : "clear"
+    }
+    ]
+}
+]

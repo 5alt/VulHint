@@ -1,0 +1,128 @@
+// author: md5_salt
+/*
+"rule_name": {"keyword":[], "discription": "test", "pattern": "regexp", bbais, ebias}
+keyword 鼠标悬浮位置
+discription 悬浮显示内容
+pattern 正则表达式
+abais 开始处偏移
+bbais 结尾处偏移
+enable 是否启用该条规则
+*/
+
+{
+	"php":{
+			"extract": {
+				"keyword": ["extract"],
+				"discription": "extract默认覆盖已有变量",
+				"pattern": "\\b(extract)\\s{0,5}\\(.{0,30}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,5},{0,1}\\s{0,5}(EXTR_OVERWRITE){0,1}\\s{0,5}\\)",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"parse_str": {
+				"keyword": ["parse_str"],
+				"discription": "parse_str对字符串进行一次url解码，同名变量覆盖前面的",
+				"pattern": "\\b(mb_){0,1}parse_str\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"parse_url": {
+				"keyword": ["parse_url"],
+				"discription": "<ul><li>可能返回null</li><li>与浏览器不一致http://a.com\\@5alt.me</li><li>与curl不一致http://x:x@a.com:80@5alt.me</li></ul>",
+				"pattern": "\\b(parse_url)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"weak_equal": {
+				"keyword": ["=="],
+				"discription": "弱类型比较",
+				"pattern": "[^=!]==[^=]",
+				"abais": 1,
+				"bbais": -1,
+				"enable": 1
+			},
+			"class_dynamic_call": {
+				"keyword": ["->$"],
+				"discription": "动态调用",
+				"pattern": "->\\$",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"preg_match": {
+				"keyword": ["preg_match", "preg_match_all"],
+				"discription": "是否有起始和结束标记，在m的情况下.不匹配换行%0a绕过",
+				"pattern": "\\b(preg_match|preg_match_all)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"in_array": {
+				"keyword": ["in_array"],
+				"discription": "是否非严格模式比较",
+				"pattern": "\\b(in_array)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"unserialize": {
+				"keyword": ["unserialize"],
+				"discription": "是否完全可控，用UAF打",
+				"pattern": "\\b(unserialize)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"file_operation":{
+				"keyword": ["unlink", "copy", "fwrite", "file_put_contents", "bzopen"],
+				"discription": "跨目录，是否存在条件竞争，windows下通配符、NTFS流",
+				"pattern": "\\b(unlink|copy|fwrite|file_put_contents|bzopen)\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"str_replace": {
+				"keyword": ["str_replace"],
+				"discription": "多次出现绕过",
+				"pattern": "\\b(str_replace)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"urldecode": {
+				"keyword": ["urldecode"],
+				"discription": "二次url编码",
+				"pattern": "\\b(urldecode)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"callback": {
+				"keyword": ["uasort", "uksort", "usort", "array_diff_uassoc", "array_diff_ukey", "array_filter", "array_intersect_uassoc", "array_intersect_ukey", "array_map", "array_reduce", "array_udiff_assoc", "array_udiff_uassoc", "array_udiff_uassoc", "array_udiff", "array_uintersect_assoc", "array_uintersect_uassoc", "array_uintersect_uassoc", "array_uintersect", "array_walk_recursive", "array_walk", "call_user_func_array", "call_user_func", "preg_replace_callback"],
+				"discription": "回调函数",
+				"pattern": "\\b(uasort|uksort|usort|array_diff_uassoc|array_diff_ukey|array_filter|array_intersect_uassoc|array_intersect_ukey|array_map|array_reduce|array_udiff_assoc|array_udiff_uassoc|array_udiff_uassoc|array_udiff|array_uintersect_assoc|array_uintersect_uassoc|array_uintersect_uassoc|array_uintersect|array_walk_recursive|array_walk|call_user_func_array|call_user_func|preg_replace_callback)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"function_dynamic_call": {
+				"keyword": [],
+				"discription": "$a()动态函数调用",
+				"pattern": "\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,5}\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"double$": {
+				"keyword": [],
+				"discription": "$$可能变量覆盖",
+				"pattern": "\\${{0,1}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,4}=\\s{0,4}.{0,20}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			}
+	}
+
+}
