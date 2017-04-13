@@ -122,6 +122,14 @@ enable 是否启用该条规则
 				"abais": 0,
 				"bbais": 0,
 				"enable": 1
+			},
+			"system":{
+				"keyword": ["system", "passthru", "pcntl_exec", "shell_exec", "escapeshellcmd", "exec"],
+				"discription": "命令执行",
+				"pattern": "\\b(system|passthru|pcntl_exec|shell_exec|escapeshellcmd|exec)\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
 			}
 	}
 
