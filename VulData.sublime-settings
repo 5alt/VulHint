@@ -130,6 +130,14 @@ enable 是否启用该条规则
 				"abais": 0,
 				"bbais": 0,
 				"enable": 1
+			},
+			"rand":{
+				"keyword": ["rand", "mt_rand"],
+				"discription": "随机数预测",
+				"pattern": "\\b(rand|mt_rand|srand|mt_srand)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
 			}
 	}
 
