@@ -139,6 +139,72 @@ enable 是否启用该条规则
 				"bbais": 0,
 				"enable": 1
 			}
+	},
+	"js":{
+		"window.addEventListener":{
+				"keyword": ["addEventListener"],
+				"discription": "监听message事件",
+				"pattern": "\\b(addEventListener)\\s{0,10}\\(['\"]\\b(message)['\"]",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+		},
+		"chrome.runtime.onMessage":{
+			"keyword": ["onMessage"],
+			"discription": "插件onMessage",
+			"pattern": "\\b(chrome\\.runtime\\.onMessage)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"chrome.runtime.onMessageExternal":{
+			"keyword": ["onMessageExternal"],
+			"discription": "插件接收外部消息onMessageExternal",
+			"pattern": "\\b(chrome\\.runtime\\.onMessageExternal)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"location":{
+			"keyword": ["location"],
+			"discription": "location操作",
+			"pattern": "\\b(location)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"innerHTML":{
+			"keyword": ["innerHTML"],
+			"discription": "innerHTML操作",
+			"pattern": "\\b(\\.innerHTML)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"html":{
+			"keyword": ["html"],
+			"discription": "jQuery .html() 操作",
+			"pattern": "\\b(\\.html)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"document.write":{
+			"keyword": ["write"],
+			"discription": "document.write",
+			"pattern": "\\b(document\\.write)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"eval":{
+			"keyword": ["eval"],
+			"discription": "eval",
+			"pattern": "\\b(eval)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
 	}
 
 }
