@@ -71,6 +71,8 @@ class VulHint(sublime_plugin.EventListener):
         clear_mark(view)
         g_regions = []
         self.lang = self.guess_lang(view)
+        if self.lang in ['html', 'htm']:
+            self.lang = 'js'
         self.data = sublime.load_settings("VulData.sublime-settings").get(self.lang, {})
 
     def mark_vul(self, view):

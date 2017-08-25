@@ -152,23 +152,31 @@ enable 是否启用该条规则
 		"chrome.runtime.onMessage":{
 			"keyword": ["onMessage"],
 			"discription": "插件onMessage",
-			"pattern": "\\b(chrome\\.runtime\\.onMessage)\\s{0,10}\\(",
+			"pattern": "\\b(chrome\\.runtime\\.onMessage)",
 			"abais": 0,
-			"bbais": -1,
+			"bbais": 0,
 			"enable": 1
 		},
 		"chrome.runtime.onMessageExternal":{
 			"keyword": ["onMessageExternal"],
 			"discription": "插件接收外部消息onMessageExternal",
-			"pattern": "\\b(chrome\\.runtime\\.onMessageExternal)\\s{0,10}\\(",
+			"pattern": "\\b(chrome\\.runtime\\.onMessageExternal)",
 			"abais": 0,
-			"bbais": -1,
+			"bbais": 0,
+			"enable": 1
+		},
+		"chrome.runtime.onConnectExternal":{
+			"keyword": ["onConnectExternal"],
+			"discription": "插件接收外部连接onConnectExternal",
+			"pattern": "\\b(chrome\\.runtime\\.onConnectExternal)",
+			"abais": 0,
+			"bbais": 0,
 			"enable": 1
 		},
 		"location":{
 			"keyword": ["location"],
 			"discription": "location操作",
-			"pattern": "\\b(location)\\s{0,10}\\(",
+			"pattern": "\\b(location)[\\.\\s=]",
 			"abais": 0,
 			"bbais": -1,
 			"enable": 1
@@ -176,15 +184,15 @@ enable 是否启用该条规则
 		"innerHTML":{
 			"keyword": ["innerHTML"],
 			"discription": "innerHTML操作",
-			"pattern": "\\b(\\.innerHTML)\\s{0,10}\\(",
+			"pattern": "\\.innerHTML",
 			"abais": 0,
-			"bbais": -1,
+			"bbais": 0,
 			"enable": 1
 		},
 		"html":{
 			"keyword": ["html"],
 			"discription": "jQuery .html() 操作",
-			"pattern": "\\b(\\.html)\\s{0,10}\\(",
+			"pattern": "\\.html\\s{0,10}\\(",
 			"abais": 0,
 			"bbais": -1,
 			"enable": 1
