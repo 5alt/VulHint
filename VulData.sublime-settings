@@ -138,6 +138,14 @@ enable 是否启用该条规则
 				"abais": 0,
 				"bbais": 0,
 				"enable": 1
+			},
+			"json_decode":{
+				"keyword": ["json_decode"],
+				"discription": "json解码，可能存在弱类型比较问题",
+				"pattern": "\\b(json_decode)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
 			}
 	},
 	"js":{
@@ -192,9 +200,9 @@ enable 是否启用该条规则
 		"html":{
 			"keyword": ["html"],
 			"discription": "jQuery .html() 操作",
-			"pattern": "\\.html\\s{0,10}\\(",
-			"abais": 0,
-			"bbais": -1,
+			"pattern": "\\.html\\s{0,10}\\(\\s{0,10}[^)]",
+			"abais": 1,
+			"bbais": -2,
 			"enable": 1
 		},
 		"document.write":{
@@ -209,6 +217,22 @@ enable 是否启用该条规则
 			"keyword": ["eval"],
 			"discription": "eval",
 			"pattern": "\\b(eval)\\s{0,10}\\(",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"setTimeout":{
+			"keyword": ["setTimeout"],
+			"discription": "setTimeout第一个参数是字符串",
+			"pattern": "\\b(setTimeout)\\s{0,10}\\(\\s{0,10}['\"]",
+			"abais": 0,
+			"bbais": -1,
+			"enable": 1
+		},
+		"setInterval":{
+			"keyword": ["setInterval"],
+			"discription": "setInterval第一个参数是字符串",
+			"pattern": "\\b(setInterval)\\s{0,10}\\(\\s{0,10}['\"]",
 			"abais": 0,
 			"bbais": -1,
 			"enable": 1
