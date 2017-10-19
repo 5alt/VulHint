@@ -139,6 +139,14 @@ enable 是否启用该条规则
 				"bbais": 0,
 				"enable": 1
 			},
+			"iconv":{
+				"keyword": ["iconv"],
+				"discription": "字符串编码转换，字符串截断问题，宽字节问题，Unicode替换问题",
+				"pattern": "\\b(iconv)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
 			"json_decode":{
 				"keyword": ["json_decode"],
 				"discription": "json解码，可能存在弱类型比较问题",
