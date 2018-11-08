@@ -53,8 +53,16 @@ enable 是否启用该条规则
 			},
 			"preg_match": {
 				"keyword": ["preg_match", "preg_match_all"],
-				"discription": "是否有起始和结束标记，在m的情况下.不匹配换行%0a绕过",
+				"discription": "是否有起始和结束标记，在m的情况下.不匹配换行%0a绕过，$匹配行尾或者换行符",
 				"pattern": "\\b(preg_match|preg_match_all)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"preg_replace": {
+				"keyword": ["preg_replace"],
+				"discription": "preg_replace中的replacement部分可以有特殊含义的标记 \\0或者$0",
+				"pattern": "\\b(preg_replace)\\(",
 				"abais": 0,
 				"bbais": -1,
 				"enable": 1
@@ -63,6 +71,14 @@ enable 是否启用该条规则
 				"keyword": ["in_array"],
 				"discription": "是否非严格模式比较",
 				"pattern": "\\b(in_array)\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"array_search": {
+				"keyword": ["array_search"],
+				"discription": "是否非严格模式比较",
+				"pattern": "\\b(array_search)\\(",
 				"abais": 0,
 				"bbais": -1,
 				"enable": 1
@@ -151,6 +167,62 @@ enable 是否启用该条规则
 				"keyword": ["json_decode"],
 				"discription": "json解码，可能存在弱类型比较问题",
 				"pattern": "\\b(json_decode)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"sprintf":{
+				"keyword": ["sprintf", "vsprintf"],
+				"discription": "php的格式化字符串问题，格式化字符串是否可控",
+				"pattern": "\\b(sprintf|vsprintf)\\s{0,10}\\(",
+				"abais": 0,
+				"bbais": -1,
+				"enable": 1
+			},
+			"env_xss":{
+				"keyword": ["PATH_INFO", "PHP_SELF"],
+				"discription": "这两个环境变量没有经过url编码，可能引发xss",
+				"pattern": "\\b(PATH_INFO|PHP_SELF)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"escapeshellarg":{
+				"keyword": ["escapeshellarg"],
+				"discription": "将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，不能用escapeshellcmd再次处理",
+				"pattern": "\\b(escapeshellarg)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"escapeshellcmd":{
+				"keyword": ["escapeshellcmd"],
+				"discription": "会对&#;|*?~<>^()[]{}$\\， \\x0A 和 \\xFF进行转义，'和 \"仅在不配对儿的时候被转义，不能用escapeshellarg再次处理",
+				"pattern": "\\b(escapeshellcmd)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"basename":{
+				"keyword": ["basename"],
+				"discription": "在win平台下，`\\/`都可以作为basename的分隔符，但是在Linux平台下只有`/`可以作为分隔。windows下之前如果用了addslashes会导致文件名中单引号逃逸。",
+				"pattern": "\\b(basename)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"getimagesize":{
+				"keyword": ["getimagesize"],
+				"discription": "windows平台如果传入路径可控，可用于猜测文件夹路径(dedecms找后台)",
+				"pattern": "\\b(getimagesize)\\(",
+				"abais": 0,
+				"bbais": 0,
+				"enable": 1
+			},
+			"$_SERVER":{
+				"keyword": ["$_SERVER"],
+				"discription": "$_SERVER 大多没过滤，伪造host等，自行解析REQUEST_URI和$_GET结果不一致，PHP_SELF部分可控",
+				"pattern": "\\b(\\$_SERVER\\[)\\(",
 				"abais": 0,
 				"bbais": 0,
 				"enable": 1
